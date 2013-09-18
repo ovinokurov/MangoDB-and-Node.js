@@ -56,9 +56,9 @@ http.createServer(function (req, res) {
             //console.log("No users found");
         else
             users.forEach( function(femaleUser) {
-            //console.log(femaleUser);
-            res.write(JSON.stringify(femaleUser));
+                res.write(JSON.stringify([femaleUser ]));
         } );
+
         res.end();
     });
 
