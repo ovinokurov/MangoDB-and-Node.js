@@ -144,6 +144,7 @@ db.users.update({email: "srirangan@gmail.com"}, {$set: {password: "iReallyLoveMo
 
 var url = require('url');
 http.createServer(function (req, res) {
+	//object for Json return
 	var objUsers = [];
     //"female"
     var sex = url.parse(req.url).pathname.substr(1);
