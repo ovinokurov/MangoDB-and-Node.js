@@ -12,26 +12,26 @@ db.users.find({sex: "female"}, function(err, users) {
 });
 
  /*
-db.users.save({email: "srirangan@gmail.com", password: "iLoveMongo", sex: "male"}, function(err, saved) {
+db.users.save({email: "ovinokurov@gmail.com", password: "iLoveMongo", sex: "male"}, function(err, saved) {
     if( err || !saved ) console.log("User not saved");
     else console.log("User saved");
 });
-db.users.save({email: "1srirangan@gmail.com", password: "iLoveMongo", sex: "female"}, function(err, saved) {
+db.users.save({email: "1ovinokurov@gmail.com", password: "iLoveMongo", sex: "female"}, function(err, saved) {
     if( err || !saved ) console.log("User not saved");
     else console.log("User saved");
 });
-db.users.save({email: "2srirangan@gmail.com", password: "iLoveMongo", sex: "female"}, function(err, saved) {
+db.users.save({email: "2ovinokurov@gmail.com", password: "iLoveMongo", sex: "female"}, function(err, saved) {
     if( err || !saved ) console.log("User not saved");
     else console.log("User saved");
 });
-db.users.save({email: "3srirangan@gmail.com", password: "iLoveMongo", sex: "female"}, function(err, saved) {
+db.users.save({email: "3ovinokurov@gmail.com", password: "iLoveMongo", sex: "female"}, function(err, saved) {
     if( err || !saved ) console.log("User not saved");
     else console.log("User saved");
 });
 */
 
  /*
-db.users.update({email: "srirangan@gmail.com"}, {$set: {sex: "female"}}, function(err, updated) {
+db.users.update({email: "ovinokurov@gmail.com"}, {$set: {sex: "female"}}, function(err, updated) {
     if( err || !updated ) console.log("User not updated");
     else console.log("User updated");
 });
@@ -40,6 +40,14 @@ db.users.update({email: "srirangan@gmail.com"}, {$set: {sex: "female"}}, functio
 
 var http = require('http');
 var url = require('url');
+
+function isEmpty(ob){
+   for(var i in ob){ return false;}
+  return true;
+}
+
+//isEmpty({a:1}) // false
+//isEmpty({}) // true
 
 http.createServer(function (req, res) {
     var objUsers = [];
@@ -59,7 +67,9 @@ http.createServer(function (req, res) {
             users.forEach( function(User) {
 				objUsers.push(User);
         } );
-		res.write(JSON.stringify(objUsers));
+		if(!isEmpty(objUsers)){
+			res.write(JSON.stringify(objUsers));
+		}
         res.end();
     });
 
