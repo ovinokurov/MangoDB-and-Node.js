@@ -46,9 +46,6 @@ function isEmpty(ob){
   return true;
 }
 
-//isEmpty({a:1}) // false
-//isEmpty({}) // true
-
 http.createServer(function (req, res) {
     var objUsers = [];
 	//"female"
