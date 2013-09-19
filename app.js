@@ -42,7 +42,8 @@ var http = require('http');
 var url = require('url');
 
 http.createServer(function (req, res) {
-    //"female"
+    var objUsers = [];
+	//"female"
     var sex = url.parse(req.url).pathname.substr(1);
     console.log(sex);
     res.writeHead(200, {'Content-Type': 'application/json'})
@@ -55,10 +56,10 @@ http.createServer(function (req, res) {
             res.write(JSON.stringify([{"Error:" : "No female users found"}]));
             //console.log("No users found");
         else
-            users.forEach( function(femaleUser) {
-                res.write(JSON.stringify([femaleUser ]));
+            users.forEach( function(User) {
+				objUsers.push(User);
         } );
-
+		res.write(JSON.stringify(objUsers));
         res.end();
     });
 
