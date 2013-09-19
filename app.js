@@ -1,5 +1,8 @@
 
-var databaseUrl = "localhost"; // "username:password@example.com/mydb"
+//var databaseUrl = "localhost"; // "username:password@example.com/mydb"
+var databaseUrl = "oleg:1234@paulo.mongohq.com:10029/HQdb"
+
+
 var collections = ["users", "reports"]
 var db = require("mongojs").connect(databaseUrl, collections);
 
@@ -11,24 +14,28 @@ db.users.find({sex: "female"}, function(err, users) {
     } );
 });
 
- /*
-db.users.save({email: "ovinokurov@gmail.com", password: "iLoveMongo", sex: "male"}, function(err, saved) {
-    if( err || !saved ) console.log("User not saved");
-    else console.log("User saved");
-});
-db.users.save({email: "1ovinokurov@gmail.com", password: "iLoveMongo", sex: "female"}, function(err, saved) {
-    if( err || !saved ) console.log("User not saved");
-    else console.log("User saved");
-});
-db.users.save({email: "2ovinokurov@gmail.com", password: "iLoveMongo", sex: "female"}, function(err, saved) {
-    if( err || !saved ) console.log("User not saved");
-    else console.log("User saved");
-});
-db.users.save({email: "3ovinokurov@gmail.com", password: "iLoveMongo", sex: "female"}, function(err, saved) {
-    if( err || !saved ) console.log("User not saved");
-    else console.log("User saved");
-});
-*/
+//don't add same email
+//db.users.ensureIndex({email:1},{unique:true});
+
+function addNewRecords()
+{
+	db.users.save({email: "ovinokurov@gmail.com", password: "iLoveMongo", sex: "male"}, function(err, saved) {
+		if( err || !saved ) console.log("User not saved");
+		else console.log("User saved");
+	});
+	db.users.save({email: "1ovinokurov@gmail.com", password: "iLoveMongo", sex: "female"}, function(err, saved) {
+		if( err || !saved ) console.log("User not saved");
+		else console.log("User saved");
+	});
+	db.users.save({email: "2ovinokurov@gmail.com", password: "iLoveMongo", sex: "female"}, function(err, saved) {
+		if( err || !saved ) console.log("User not saved");
+		else console.log("User saved");
+	});
+	db.users.save({email: "3ovinokurov@gmail.com", password: "iLoveMongo", sex: "female"}, function(err, saved) {
+		if( err || !saved ) console.log("User not saved");
+		else console.log("User saved");
+	});
+}
 
  /*
 db.users.update({email: "ovinokurov@gmail.com"}, {$set: {sex: "female"}}, function(err, updated) {
